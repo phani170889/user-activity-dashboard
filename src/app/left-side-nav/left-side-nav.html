@@ -1,0 +1,39 @@
+<mat-sidenav-container class="side-nav-container">
+  <mat-sidenav mode="side" opened>
+    <mat-toolbar color="primary">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>My Profile</button>
+          <button mat-menu-item>Settings</button>
+        </mat-menu>
+      </button>
+      <span>My dashboard</span>
+      <span class="example-spacer"></span>
+      <!-- <button
+        mat-icon-button
+        class="example-icon favorite-icon"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button> -->
+    </mat-toolbar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-card class="my-profile-card">
+      <mat-card-title class="profile-title"> My profile</mat-card-title>
+      <mat-card-content>
+        <mat-tab-group>
+          <mat-tab label="Personal info">
+            <ag-grid-angular [rowData]="rowData" [columnDefs]="colDefs" [domLayout]="'autoHeight'">
+            </ag-grid-angular>
+          </mat-tab>
+          <mat-tab label="Address info"> Address info </mat-tab>
+          <mat-tab label="Company info"> Company info </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>

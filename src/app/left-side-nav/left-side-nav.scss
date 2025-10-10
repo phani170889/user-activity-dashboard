@@ -1,0 +1,27 @@
+.side-nav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+.my-profile-card {
+  margin: 50px;
+  width: 50%;
+  .profile-title {
+    padding: 10px;
+  }
+  // .profile-content {
+  //     padding: 30px;
+  // }
+}
+
+.example-spacer {
+  padding-right: 30px;
+}
+
+.personal-info-tab {
+    padding-bottom: 24px;
+}
