@@ -65,6 +65,10 @@
             },
             "development": {
               "buildTarget": "user-activity-dashboard:build:development"
+            },
+            "options": {
+              "buildTarget": "user-activity-dashboard:build:development",
+              "proxyConfig": "proxy.conf.js"
             }
           },
           "defaultConfiguration": "development"
