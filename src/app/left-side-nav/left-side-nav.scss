@@ -1,5 +1,5 @@
 .side-nav-container {
-  position: absolute;
+//   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
@@ -9,7 +9,7 @@
 
 .my-profile-card {
   margin: 50px;
-  width: 50%;
+  width: 90%;
   .profile-title {
     padding: 10px;
   }
@@ -24,4 +24,13 @@
 
 .personal-info-tab {
     padding-bottom: 24px;
+}
+
+.ag-grid-table {
+    margin: 24px !important;
+}
+
+.menu-buttons {
+  display: flex;
+  align-items: center; /* Vertically centers the icon and text */
 }
