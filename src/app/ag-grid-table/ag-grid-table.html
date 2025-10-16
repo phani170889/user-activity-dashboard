@@ -1,8 +1,23 @@
+<section class="add-user-section">
+  <button matButton="filled" color="accent" class="add-user-button" (click)="addOrEditUser()">
+    Add user
+  </button>
+</section>
+
 <!-- The AG Grid component -->
-<ag-grid-angular
-  class="ag-theme-alpine"
-  [rowData]="rowData"
-  [columnDefs]="colDefs"
-  [domLayout]="'autoHeight'"
->
-</ag-grid-angular>
+<section>
+  <ag-grid-angular
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="colDefs"
+    [domLayout]="'autoHeight'"
+    [theme]="theme"
+    [pagination]="pagination"
+    [paginationPageSize]="paginationPageSize"
+    [paginationPageSizeSelector]="paginationPageSizeSelector"
+    [loading]="isTableLoading"
+    [rowHeight]="50"
+    (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>
+</section>

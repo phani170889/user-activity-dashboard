@@ -1,39 +1,51 @@
-<mat-sidenav-container class="side-nav-container">
-  <mat-sidenav mode="side" opened>
-    <mat-toolbar color="primary">
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>menu</mat-icon>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>My Profile</button>
-          <button mat-menu-item>Settings</button>
-        </mat-menu>
-      </button>
-      <span>My dashboard</span>
-      <span class="example-spacer"></span>
-      <!-- <button
-        mat-icon-button
-        class="example-icon favorite-icon"
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="toggleDrawer()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span>My dashboard</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container autosize class="side-nav-container">
+  <mat-sidenav mode="side" [opened]="openMenu">
+    <mat-list>
+      <mat-list-item>
+        <div class="menu-buttons">
+          <button matButton="text" routerLink=""><mat-icon class="home">home</mat-icon>Home</button>
+        </div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="menu-buttons">
+          <button matButton="text" routerLink="">
+            <mat-icon class="profile">person</mat-icon>My profile
+          </button>
+        </div>
+      </mat-list-item>
+      <mat-list-item
+        ><div class="menu-buttons">
+          <button matButton="text" routerLink="">
+            <mat-icon class="settings">settings</mat-icon>Settings
+          </button>
+        </div></mat-list-item
       >
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-      </button> -->
-    </mat-toolbar>
+    </mat-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
     <mat-card class="my-profile-card">
       <mat-card-title class="profile-title"> My profile</mat-card-title>
       <mat-card-content>
         <mat-tab-group>
-          <mat-tab label="Personal info">
-            <ag-grid-angular [rowData]="rowData" [columnDefs]="colDefs" [domLayout]="'autoHeight'">
-            </ag-grid-angular>
-          </mat-tab>
-          <mat-tab label="Address info"> Address info </mat-tab>
-          <mat-tab label="Company info"> Company info </mat-tab>
+          <mat-tab label="Personal info"> </mat-tab>
+          <mat-tab label="Address info"> </mat-tab>
+          <mat-tab label="Company info"> </mat-tab>
         </mat-tab-group>
       </mat-card-content>
+      <div class="ag-grid-table">
+        <app-ag-grid-table></app-ag-grid-table>
+      </div>
     </mat-card>
   </mat-sidenav-content>
 </mat-sidenav-container>

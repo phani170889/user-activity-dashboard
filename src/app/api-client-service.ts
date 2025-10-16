@@ -18,4 +18,18 @@ export class ApiClientService {
   get(url: string, options?: any) {
     return this.httpClient.get(url, options);
   }
+
+  /**
+   * Constructs a `PUT` request that interprets the body as JSON
+   * and returns an observable of JavaScript object.
+   *
+   * @param url The endpoint URL.
+   * @param body The resources to add/update.
+   * @param options HTTP options
+   *
+   * @return An `Observable` of the response as a JavaScript object.
+   */
+  put(url: string, body?: any, options?: any) {
+    return this.httpClient.put(url, body, options);
+  }
 }

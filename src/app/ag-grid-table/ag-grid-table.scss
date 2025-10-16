@@ -1,0 +1,14 @@
+.add-user-section {
+  margin-bottom: 24px;
+  justify-self: flex-end;
+  .add-user-button {
+    color: #000000de;
+    background-color: #ffd740;
+  }
+}
+
+::ng-deep {
+  .ag-root-wrapper {
+    border-radius: 10px;
+  }
+}

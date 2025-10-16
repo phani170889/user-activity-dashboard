@@ -1,0 +1,55 @@
+<section class="mat-dialog">
+@if (data) {
+<h2 mat-dialog-title>Edit user</h2>
+<mat-dialog-content>
+  <div>
+    <mat-form-field>
+      <mat-label>First name</mat-label>
+      <input matInput [(ngModel)]="data.firstName" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Last name</mat-label>
+      <input matInput [(ngModel)]="data.lastName" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Zip code</mat-label>
+      <input matInput [(ngModel)]="data.zipCode" />
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button matButton="text" color="primary" class="dialog-button" (click)="onCancelClick()">Cancel</button>
+  <button matButton="filled" color="primary" class="dialog-button" (click)="onSaveClick('edit')" cdkFocusInitial>Save</button>
+</mat-dialog-actions>
+} @else {
+<h2 mat-dialog-title>Add user</h2>
+<mat-dialog-content>
+  <div>
+    <mat-form-field>
+      <mat-label>First name</mat-label>
+      <input matInput id="firstName" required [(ngModel)]="firstName" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Last name</mat-label>
+      <input matInput id="lastName" required [(ngModel)]="lastName" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Zip code</mat-label>
+      <input matInput id="zipCode" required [(ngModel)]="zipCode" />
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button matButton="text" color="primary" class="dialog-button" (click)="onCancelClick()">Cancel</button>
+  <button matButton="filled" color="primary" class="dialog-button" (click)="onSaveClick('create')" cdkFocusInitial>Save</button>
+</mat-dialog-actions>
+}
+</section>
