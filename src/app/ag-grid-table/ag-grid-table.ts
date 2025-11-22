@@ -95,6 +95,7 @@ export class AgGridTable implements OnInit {
           last_name: result.lastName,
           zip_code: result.zipCode,
         };
+        // const requestParams = `firstName=${body.firstName}&lastName=${body.lastName}&zipCode=${body.zipCode}`
         this.apiClientService.put('/api/user/profile', body).subscribe({
           next: (data: any) => {
             if (data.status === 'SUCCESS') {
