@@ -99,7 +99,7 @@ export class AgGridTable implements OnInit {
 
   saveUser() {
     this.dialogRef.afterClosed().subscribe((result: any) => {
-      if (result !== undefined) {
+      if (result !== undefined && result.action !== 'cancel') {
         const uuid = crypto.randomUUID();
         const body = {
           id: result.action === 'edit' ? result.data.id : uuid,

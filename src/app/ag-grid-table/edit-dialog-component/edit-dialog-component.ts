@@ -23,9 +23,6 @@ import { CommonModule } from '@angular/common';
 export class EditDialogComponent implements OnInit {
   readonly dialogRef = inject(MatDialogRef<EditDialogComponent>);
   userData = inject<DialogData>(MAT_DIALOG_DATA);
-  firstName: any;
-  lastName: any;
-  zipCode: any;
   userForm!: FormGroup;
   submitted!: boolean;
 
@@ -40,6 +37,7 @@ export class EditDialogComponent implements OnInit {
   }
 
   onCancelClick(): void {
+    this.userData.action = 'cancel';
     this.dialogRef.close();
   }
 

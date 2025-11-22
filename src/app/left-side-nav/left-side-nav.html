@@ -35,17 +35,17 @@
 
   <mat-sidenav-content>
     <mat-card class="my-profile-card">
-      <mat-card-title class="profile-title"> My profile</mat-card-title>
+      <mat-card-title class="profile-title">Manage users</mat-card-title>
       <mat-card-content>
-        <mat-tab-group>
+        <!-- <mat-tab-group>
           <mat-tab label="All users"> </mat-tab>
           <mat-tab label="Address info"> </mat-tab>
           <mat-tab label="Company info"> </mat-tab>
-        </mat-tab-group>
+        </mat-tab-group> -->
+        <div class="ag-grid-table">
+          <app-ag-grid-table></app-ag-grid-table>
+        </div>
       </mat-card-content>
-      <div class="ag-grid-table">
-        <app-ag-grid-table></app-ag-grid-table>
-      </div>
     </mat-card>
   </mat-sidenav-content>
 </mat-sidenav-container>
