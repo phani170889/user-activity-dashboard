@@ -32,4 +32,14 @@ export class ApiClientService {
   put(url: string, body?: any, options?: any) {
     return this.httpClient.put(url, body, options);
   }
+
+  /**
+   * Constructs a DELETE request that interprets the body as an ArrayBuffer and returns the response as an ArrayBuffer.
+   * @param url — The endpoint URL.
+   * @param options — The HTTP options to send with the request.
+   * @return — An Observable of the response body as an ArrayBuffer.
+   */
+  delete(url: string, body?: any) {
+    return this.httpClient.delete(url, body);
+  }
 }

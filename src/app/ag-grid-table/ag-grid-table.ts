@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular'; // Angular Data Grid Component
 import {
   colorSchemeDarkBlue,
+  GridApi,
   GridReadyEvent,
   themeAlpine,
   type ColDef,
@@ -26,13 +27,19 @@ export class AgGridTable implements OnInit {
     { field: 'lastName', headerName: 'Last name', unSortIcon: true },
     { field: 'zipCode', headerName: 'Zip code', unSortIcon: true },
     {
-      field: 'actions',
-      headerName: 'Actions',
       cellRenderer: CustomCellComponent,
       flex: 1,
       cellRendererParams: {
         label: 'Edit', // Custom parameter: button label
-        action: (data: any) => this.addOrEditUser(data), // Custom parameter: callback function
+        action: (data: any) => this.addOrEditUser('edit', data), // Custom parameter: callback function
+      },
+    },
+    {
+      cellRenderer: CustomCellComponent,
+      flex: 1,
+      cellRendererParams: {
+        label: 'Delete', // Custom parameter: button label
+        action: (data: any) => this.deleteUser(data), // Custom parameter: callback function
       },
     },
   ];
@@ -43,6 +50,7 @@ export class AgGridTable implements OnInit {
   paginationPageSizeSelector = [10, 20, 50, 100];
   dialogRef!: MatDialogRef<EditDialogComponent, any>;
   readonly dialog = inject(MatDialog);
+  gridApi!: GridApi;
 
   constructor(private apiClientService: ApiClientService) {}
   ngOnInit() {}
@@ -67,6 +75,7 @@ export class AgGridTable implements OnInit {
         if (data) {
           this.isTableLoading = false;
           this.rowData = this.getTableRows(data);
+          params?.api.refreshCells();
         }
       },
       error: (err: any) => {
@@ -76,11 +85,14 @@ export class AgGridTable implements OnInit {
     });
   }
 
-  addOrEditUser(data?: any) {
+  addOrEditUser(action: any, data?: any) {
     this.dialogRef = this.dialog.open(EditDialogComponent, {
-      height: '400px',
+      height: '450px',
       width: '600px',
-      data,
+      data: {
+        data,
+        action,
+      },
     });
     this.saveUser();
   }
@@ -90,10 +102,10 @@ export class AgGridTable implements OnInit {
       if (result !== undefined) {
         const uuid = crypto.randomUUID();
         const body = {
-          id: result.action === 'edit' ? result.id : uuid,
-          first_name: result.firstName,
-          last_name: result.lastName,
-          zip_code: result.zipCode,
+          id: result.action === 'edit' ? result.data.id : uuid,
+          first_name: result.data.firstName,
+          last_name: result.data.lastName,
+          zip_code: result.data.zipCode,
         };
         // const requestParams = `firstName=${body.firstName}&lastName=${body.lastName}&zipCode=${body.zipCode}`
         this.apiClientService.put('/api/user/profile', body).subscribe({
@@ -107,6 +119,19 @@ export class AgGridTable implements OnInit {
           },
         });
       }
+    });
+  }
+
+  deleteUser(data: any) {
+    this.apiClientService.delete(`/api/user/profile/${data.id}`).subscribe({
+      next: (data: any) => {
+        if (data.status === 'SUCCESS') {
+          this.onGridReady();
+        }
+      },
+      error(err: any) {
+        console.error(err);
+      },
     });
   }
 }
