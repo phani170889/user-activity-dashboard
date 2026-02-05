@@ -134,4 +134,14 @@ export class AgGridTable implements OnInit {
       },
     });
   }
+
+  searchUser(action: any) {
+this.dialogRef = this.dialog.open(EditDialogComponent, {
+      height: '450px',
+      width: '600px',
+      data: {
+        action,
+      },
+    });
+  }
 }

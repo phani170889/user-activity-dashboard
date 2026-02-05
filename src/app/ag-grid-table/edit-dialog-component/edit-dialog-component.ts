@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,15 +25,22 @@ export class EditDialogComponent implements OnInit {
   userData = inject<DialogData>(MAT_DIALOG_DATA);
   userForm!: FormGroup;
   submitted!: boolean;
+  isAmountValid: boolean = false;
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.userForm = new FormGroup({
+    this.userForm = new FormGroup({ 
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       zipCode: new FormControl('', [Validators.required]),
     });
+
+    // this.userForm = this.fb.group({
+    //   firstName: ['', Validators.required],
+    //   lastName: ['', Validators.required],
+    //   zipCode: ['', Validators.required],
+    // })
   }
 
   onCancelClick(): void {
@@ -59,6 +66,13 @@ export class EditDialogComponent implements OnInit {
       }
       this.dialogRef.close(this.userData);
     }
+  }
+
+  customAmountValidator(control: AbstractControl): ValidationErrors | null {
+    if (control.value >= 10) {
+      this.isAmountValid = false;
+    }
+    return null
   }
 }
 

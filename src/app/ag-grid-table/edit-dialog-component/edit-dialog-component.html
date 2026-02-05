@@ -1,5 +1,11 @@
 <section class="mat-dialog">
-  <h2 mat-dialog-title>Edit user</h2>
+  <h2 mat-dialog-title>
+    {{
+    userData.action === 'edit' ? 'Edit user':
+    userData.action === 'add' ? 'Add new user':
+    'Search user'
+  }}
+  </h2>
   <form [formGroup]="userForm" (ngSubmit)="onSaveClick(userData.action)">
     <mat-dialog-content>
       <div>

@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
 export class ApiClientService {
-  constructor(private httpClient: HttpClient) {}
+  // constructor(private httpClient: HttpClient) {}
+  private httpClient = inject(HttpClient);
 
   /**
    * Constructs a `GET` request that interprets the body as an `ArrayBuffer` and returns the

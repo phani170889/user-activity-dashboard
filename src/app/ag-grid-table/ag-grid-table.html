@@ -1,7 +1,14 @@
 <section class="add-user-section">
-  <button matButton="filled" color="accent" class="add-user-button" (click)="addOrEditUser('add')">
-    Add user
-  </button>
+  <span style="padding-right: 25px">
+    <button matButton="filled" color="accent" class="user-button" (click)="addOrEditUser('add')">
+      Add user
+    </button>
+  </span>
+  <span>
+    <button matButton="filled" color="accent" class="user-button" (click)="searchUser('search')">
+      Search user
+    </button>
+  </span>
 </section>
 
 <!-- The AG Grid component -->
